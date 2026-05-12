@@ -29,25 +29,36 @@ Evaluation was performed on a **balanced held-out test set** (400 Normal + 300 A
 > The AUC-ROC of **0.9296** reflects strong discriminative capacity between normal and dysplastic cells despite significant morphological overlap.
 
 ### Per-Class Accuracy (Balanced Test Set)
-
+ 
+Sorted by accuracy (ascending) to highlight the hardest cases first.
+ 
 | Cell Type | N | Label | Mean Prob | Accuracy |
 |---|---|---|---|---|
-| Blast, NOC | 3 | AB | 0.983 | **1.000** |
-| Micromegakaryocyte | 28 | AB | 0.950 | **0.964** |
-| Small megakaryocyte | 41 | AB | 0.910 | **0.878** |
-| Myeloblast | 149 | AB | 0.716 | 0.685 |
-| Dysplastic erythroblast | 50 | AB | 0.616 | 0.580 |
+| Segmented basophil | 2 | NL | 0.486 | 0.500 |
 | Dysplastic granulocyte | 26 | AB | 0.586 | 0.577 |
-| Segmented neutrophil | 38 | NL | 0.031 | **1.000** |
-| Late erythroblast | 77 | NL | 0.041 | **0.987** |
-| Band neutrophil | 48 | NL | 0.048 | **0.979** |
+| Dysplastic erythroblast | 50 | AB | 0.616 | 0.580 |
+| Monoblast | 3 | AB | 0.766 | 0.667 |
+| Myeloblast | 149 | AB | 0.716 | 0.685 |
+| Plasma cell | 5 | NL | 0.272 | 0.800 |
+| Early erythroblast | 16 | NL | 0.172 | 0.875 |
+| Small megakaryocyte | 41 | AB | 0.910 | 0.878 |
+| Neutrophilic metamyelocyte | 28 | NL | 0.188 | 0.893 |
+| Monocyte | 16 | NL | 0.113 | 0.938 |
+| Neutrophilic myelocyte | 18 | NL | 0.085 | 0.944 |
 | Mature lymphocyte | 86 | NL | 0.150 | 0.953 |
 | Intermediate erythroblast | 44 | NL | 0.119 | 0.955 |
-| Monocyte | 16 | NL | 0.113 | 0.938 |
-| Promyelocyte | 9 | NL | 0.108 | **1.000** |
-
-Difficult cases — Dysplastic granulocytes and erythroblasts — show lower accuracy due to morphological similarity with normal counterparts, consistent with challenges faced by human morphologists.
-
+| Micromegakaryocyte | 28 | AB | 0.950 | 0.964 |
+| Band neutrophil | 48 | NL | 0.048 | 0.979 |
+| Late erythroblast | 77 | NL | 0.041 | 0.987 |
+| Mitosis | 3 | NL | 0.188 | 1.000 |
+| Eosinophilic metamyelocyte | 3 | NL | 0.018 | 1.000 |
+| Blast, NOC | 3 | AB | 0.983 | 1.000 |
+| Promyelocyte | 9 | NL | 0.108 | 1.000 |
+| Segmented eosinophil | 2 | NL | 0.010 | 1.000 |
+| Segmented neutrophil | 38 | NL | 0.031 | 1.000 |
+ 
+The hardest abnormal classes are **Dysplastic granulocytes** (0.577) and **Dysplastic erythroblasts** (0.580), whose morphology closely overlaps with normal counterparts — consistent with the difficulty faced by human morphologists. **Myeloblasts** (the most prevalent abnormal class at n=149) achieve 0.685, reflecting the challenge of the largest and most heterogeneous dysplastic population. High-confidence correct detections include **Micromegakaryocytes** (0.964) and **Blast, NOC** (1.000).
+ 
 ---
 
 ## Dataset
