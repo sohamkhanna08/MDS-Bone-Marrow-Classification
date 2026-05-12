@@ -51,18 +51,98 @@ Difficult cases — Dysplastic granulocytes and erythroblasts — show lower acc
 ---
 
 ## Dataset
-
+ 
 The dataset is sourced from the publicly available bone marrow cell image repository introduced by **Shen et al. (2025)**:
-
+ 
 > D. Shen et al., "A large dataset of bone marrow cells in myelodysplastic syndrome for classification systems," *Scientific Data*, vol. 12, p. 1849, 2025. DOI: [10.1038/s41597-025-06027-z](https://doi.org/10.1038/s41597-025-06027-z)
-
-- ~20,500 Wright-Giemsa stained microscopic images across multiple morphological cell types
-- Binary label mapping: all cell types grouped into **Normal (0)** and **Dysplastic/Abnormal (1)**
-- Ambiguous categories (Smudge Cell, Unclassified Cell) excluded
-- Dataset split: **70 / 15 / 15** (train / val / test), stratified at cell-type level
-- Pronounced class imbalance addressed via balanced batch sampling and class weighting
-
+ 
+### Summary
+ 
+| Split | Count |
+|---|---|
+| Total images (after exclusions) | 20,572 |
+| Normal (label 0) | 18,451 |
+| Abnormal (label 1) | 2,121 |
+| Class imbalance ratio | ~8.7 : 1 |
+ 
+Ambiguous categories — **Smudge Cell** and **Unclassified Cell** — were excluded from the analysis. Dataset split: **70 / 15 / 15** (train / val / test), stratified at cell-type level.
+ 
+### Per-Class Distribution
+ 
+| Cell Type | Label | Count |
+|---|---|---|
+| Blast, NOC | 1 | 22 |
+| Dysplastic erythroblast | 1 | 354 |
+| Dysplastic granulocyte | 1 | 178 |
+| Dysplastic megakaryocyte | 1 | 1 |
+| Megaloblastic late erythroblast | 1 | 4 |
+| Micromegakaryocyte | 1 | 210 |
+| Monoblast | 1 | 19 |
+| Myeloblast | 1 | 1,045 |
+| Small megakaryocyte | 1 | 288 |
+| Band eosinophil | 0 | 59 |
+| Band neutrophil | 0 | 2,208 |
+| Early erythroblast | 0 | 740 |
+| Eosinophilic metamyelocyte | 0 | 148 |
+| Eosinophilic myelocyte | 0 | 45 |
+| Histiocyte | 0 | 3 |
+| Intermediate erythroblast | 0 | 2,084 |
+| Late erythroblast | 0 | 3,555 |
+| Mature lymphocyte | 0 | 3,958 |
+| Megakaryocyte | 0 | 11 |
+| Mitosis | 0 | 123 |
+| Monocyte | 0 | 734 |
+| Neutrophilic metamyelocyte | 0 | 1,291 |
+| Neutrophilic myelocyte | 0 | 828 |
+| Plasma cell | 0 | 228 |
+| Proerythroblast | 0 | 47 |
+| Promonocyte | 0 | 33 |
+| Promyelocyte | 0 | 429 |
+| Segmented basophil | 0 | 88 |
+| Segmented eosinophil | 0 | 96 |
+| Segmented neutrophil | 0 | 1,743 |
+ 
+### Label Mapping
+ 
+```python
+BINARY_MAPPING = {
+    'Blast, NOC'                     : 1,
+    'Myeloblast'                     : 1,
+    'Monoblast'                      : 1,
+    'Dysplastic granulocyte'         : 1,
+    'Dysplastic erythroblast'        : 1,
+    'Dysplastic megakaryocyte'       : 1,
+    'Micromegakaryocyte'             : 1,
+    'Small megakaryocyte'            : 1,
+    'Megaloblastic late erythroblast': 1,
+    'Promonocyte'                    : 0,
+    'Promyelocyte'                   : 0,
+    'Band neutrophil'                : 0,
+    'Band eosinophil'                : 0,
+    'Early erythroblast'             : 0,
+    'Intermediate erythroblast'      : 0,
+    'Late erythroblast'              : 0,
+    'Proerythroblast'                : 0,
+    'Neutrophilic myelocyte'         : 0,
+    'Neutrophilic metamyelocyte'     : 0,
+    'Eosinophilic myelocyte'         : 0,
+    'Eosinophilic metamyelocyte'     : 0,
+    'Monocyte'                       : 0,
+    'Mature lymphocyte'              : 0,
+    'Plasma cell'                    : 0,
+    'Histiocyte'                     : 0,
+    'Megakaryocyte'                  : 0,
+    'Segmented neutrophil'           : 0,
+    'Segmented eosinophil'           : 0,
+    'Segmented basophil'             : 0,
+    'Mitosis'                        : 0,
+}
+ 
+EXCLUDED_CLASSES = {'Smudge cell', 'Unclassified cell'}
+```
+ 
 ---
+ 
 
 ## Methodology
 
